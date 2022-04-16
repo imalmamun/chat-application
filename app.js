@@ -4,6 +4,10 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const moment = require("moment");
+const http = require("http");
+const io = require("socket.io");
+// const ejsLint = require("ejs-lint");
 
 // internal imports
 const {
@@ -12,7 +16,14 @@ const {
 } = require("./middlewares/common/errorHandler");
 
 const app = express();
+const server = http.createServer(app);
 dotenv.config();
+
+// socket creation
+global.io = io(server);
+
+// set moment as app locals
+app.locals.moment = moment;
 
 // database connection
 mongoose
@@ -32,6 +43,7 @@ app.set("view engine", "ejs");
 
 // set static folder
 app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static("public"))
 
 // cookie-parser
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -40,6 +52,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 const loginRouter = require("./router/loginRouter");
 const usersRouter = require("./router/usersRouter");
 const inboxRouter = require("./router/inboxRouter");
+
 app.use("/", loginRouter);
 app.use("/users", usersRouter);
 app.use("/inbox", inboxRouter);
@@ -51,6 +64,6 @@ app.use(notFoundHandler);
 app.use(allErrorHandleLastly);
 
 // server listening
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`server is listening on port: ${process.env.PORT}`);
 });
