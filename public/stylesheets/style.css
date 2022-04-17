@@ -18,11 +18,11 @@
   --red: indianred;
 
   /* my colors */
-  --light_pink: #D7A0D6;
-  --light_green: #CFE363;
-  --beguni: #9B50F3;
-  --pink: #FC59DD;
-  --skycombo1: #BDF3F1;
+  --light_pink: #d7a0d6;
+  --light_green: #cfe363;
+  --beguni: #9b50f3;
+  --pink: #fc59dd;
+  --skycombo1: #bdf3f1;
 }
 
 /* common global styles */
@@ -40,7 +40,11 @@ body {
 
 html {
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(to right, var(--skycombo1) 0%, var(--beguni) 100%);
+  background: linear-gradient(
+    to right,
+    var(--skycombo1) 0%,
+    var(--beguni) 100%
+  );
   font-size: 10px;
 }
 
@@ -477,7 +481,6 @@ input[type="submit"]:active {
 
 .message-content img {
   width: 40px;
-  border-radius: 5px !important;
 }
 
 .you-message {
@@ -500,7 +503,7 @@ input[type="submit"]:active {
 }
 
 .message-row img:first-of-type {
-  border-radius: 50%;
+  /* border-radius: 50% !important ; */
   grid-row: span 2;
 }
 
@@ -809,6 +812,7 @@ input[type="submit"]:active {
 }
 
 /* custom styles... */
+
 .pdf-attachment-div a {
   text-decoration: none;
   display: flex;
@@ -816,6 +820,17 @@ input[type="submit"]:active {
   align-items: center;
   color: black;
 }
-.login_image{
+/* .pdf-attachment-div{
+  
+} */
+.login_image {
+  border-radius: 50%;
+}
+
+.attachment_image {
+  border-radius: 5%;
+}
+
+.participant_image {
   border-radius: 50%;
 }

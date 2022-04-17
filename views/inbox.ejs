@@ -104,9 +104,11 @@
         if(data.message.conversation_id === current_conversation_id){
            // message class
            const messageClass = data.message.sender.id === loggedinUserId ? 'you-message' : 'other-message';
-                      let senderAvatar = data.message.sender.avatar ? `<img src="./uploads/avatars/${data.message.sender.avatar}" alt="${data.message.sender.name}" />` : `<img src="./images/nophoto.png" alt="${data.message.sender.name}" />`;
+
+
+          let senderAvatar = data.message.sender.avatar ? `<img class="participant_image" src="./uploads/avatars/${data.message.sender.avatar}" alt="${data.message.sender.name}" />` : `<img class="participant_image" src="./images/nophoto.png" alt="${data.message.sender.name}" />`;
           //  console.log(data.message.sender.avatar);
-           let showAvatar = data.message.sender.id === loggedinUserId ? '' : `${senderAvatar}`;
+          let showAvatar = data.message.sender.id === loggedinUserId ? '' : `${senderAvatar}`;
             // message attachments
           let attachments = '<div class="attachments">';
           if(data.message.attachment && data.message.attachment.length > 0) {
@@ -114,9 +116,11 @@
               const extension = attachment.split('.').pop();
               // console.log(extension);
               if(extension == "pdf"){
-                attachments += `<a href="./uploads/attachments/${attachment}" target="_blank">${attachment}<img src="./images/attachment.png" alt="pdf attachment" /></a>`;
+
+                attachments += `<div class="pdf-attachment-div"><a href="./uploads/attachments/${attachment}" target="_blank">${attachment}<img src="./images/attachment.png" alt="pdf attachment" /></a></div>`;
+
               } else{
-               attachments += `<img src="./uploads/attachments/${attachment}" /> `;
+               attachments += `<img class="attachment_image" src="./uploads/attachments/${attachment}" /> `;
               }
             });
           }
@@ -149,24 +153,31 @@
           const {data, userId, conversation_id} = result;
           participant = data.participant;
           current_conversation_id = conversation_id;
+
           if(data.messages){
             let allmessages = "";
+
             if(data.messages.length > 0){
               data.messages.forEach((message)=> {
                 let senderAvatar = message.sender.avatar ? `./uploads/avatars/${message.sender.avatar}`: `./images/nophoto.png`;
                 const messageClass = message.sender.id === loggedinUserId ? 'you-message' : 'other-message';
-                const showAvatar = message.sender.id === loggedinUserId ? '' : `<img src="${senderAvatar}" alt="${message.sender.name}" />`;
+                const showAvatar = message.sender.id === loggedinUserId ? '' : `<img class="participant_image"src="${senderAvatar}" alt="${message.sender.name}" />`;
                 // message attachments
                 let attachments = '<div class="attachments">';
+
                   if(message.attachment && message.attachment.length > 0) {
                     message.attachment.forEach(attachment => {
                       const extension = attachment.split('.').pop();
               console.log(extension);
               if(extension == "pdf"){
+
                 // <img src="./images/attachment.png" alt="Add Attachment" />
                 attachments += `<div class="pdf-attachment-div"><a href="./uploads/attachments/${attachment}" target="_blank">${attachment}<img src="./images/attachment.png" alt="pdf attachment" /></a></div>`;
+ 
               } else{
-                attachments += `<img src="./uploads/attachments/${attachment}" /> `;
+
+                attachments += `<img class="attachment_image" src="./uploads/attachments/${attachment}" /> `;
+
               }
                       // attachments += `<img src="./uploads/attachments/${attachment}" /> `;
                     });
