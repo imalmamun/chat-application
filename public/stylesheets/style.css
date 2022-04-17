@@ -16,6 +16,13 @@
   --blue: #00b3bd;
   --light: #fff;
   --red: indianred;
+
+  /* my colors */
+  --light_pink: #D7A0D6;
+  --light_green: #CFE363;
+  --beguni: #9B50F3;
+  --pink: #FC59DD;
+  --skycombo1: #BDF3F1;
 }
 
 /* common global styles */
@@ -33,7 +40,7 @@ body {
 
 html {
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(to right, var(--green) 0%, var(--blue) 100%);
+  background: linear-gradient(to right, var(--skycombo1) 0%, var(--beguni) 100%);
   font-size: 10px;
 }
 
@@ -469,7 +476,8 @@ input[type="submit"]:active {
 }
 
 .message-content img {
-  width: 32px;
+  width: 40px;
+  border-radius: 5px !important;
 }
 
 .you-message {
@@ -492,7 +500,7 @@ input[type="submit"]:active {
 }
 
 .message-row img:first-of-type {
-  border-radius: 100%;
+  border-radius: 50%;
   grid-row: span 2;
 }
 
@@ -798,4 +806,16 @@ input[type="submit"]:active {
     var(--blue) 100%
   );
   background: linear-gradient(to right, var(--green) 0%, var(--blue) 100%);
+}
+
+/* custom styles... */
+.pdf-attachment-div a {
+  text-decoration: none;
+  display: flex;
+  /* text-align: center; */
+  align-items: center;
+  color: black;
+}
+.login_image{
+  border-radius: 50%;
 }

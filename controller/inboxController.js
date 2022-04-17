@@ -28,13 +28,10 @@ exports.getInbox = async (req, res, next) => {
 // search user in conversation modal
 exports.searchUser = async (req, res, next) => {
   const user = req.body.user;
-  console.log(JSON.stringify(user));
-
+  // console.log(JSON.stringify(user));
   const searchQuery = user.replace("+88", "");
-
   const name_search_regex = new RegExp(escape(searchQuery), "i");
-  console.log(JSON.stringify(name_search_regex));
-
+  // console.log(JSON.stringify(name_search_regex));
   const mobile_search_regex = new RegExp("^" + escape("+88" + searchQuery));
   const email_search_regex = new RegExp("^" + escape(searchQuery) + "$", "i");
 
@@ -134,11 +131,10 @@ exports.getMessages = async (req, res, next) => {
 
 // send message
 exports.sendMessage = async (req, res, next) => {
-  console.log("send message in inboxcontroller is hitted");
-
+  // console.log("send message in inboxcontroller is hitted");
   if (req.body.message || (req.files && req.files.length > 0)) {
     try {
-      console.log("try block is hitted");
+      // console.log("try block is hitted");
       // save message text/attachment in database
       let attachments = null;
       if (req.files && req.files.length > 0) {
@@ -165,7 +161,7 @@ exports.sendMessage = async (req, res, next) => {
         conversation_id: req.body.conversationId,
       });
       const result = await newMessage.save();
-      console.log("message is saved");
+      // console.log("message is saved");
 
       //  emit socket event
       global.io.emit("new_message", {
