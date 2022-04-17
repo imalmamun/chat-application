@@ -198,8 +198,12 @@
       // sending message
       form.onsubmit = async function (event) {
     event.preventDefault();
-        console.log('submitted message');
-                // preparing the form data
+    // creating toast
+    const sendMessageFailureToast = Toastify({
+          text: "Error sending message",
+          duration: 1000,
+        });
+        // console.log('submitted message');
         let formData = new FormData(form);
         formData.append("receiverId", participant.id);
         formData.append("receiverName", participant.name);
@@ -219,7 +223,7 @@
           form.reset(); // that will reset the form
         } else{ 
           // failure toast for sending message
-          console.log(JSON.stringify(result.errors));
+          sendMessageFailureToast.showToast();
         }
       }
       
